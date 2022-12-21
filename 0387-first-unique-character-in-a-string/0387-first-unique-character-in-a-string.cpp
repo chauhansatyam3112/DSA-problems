@@ -6,10 +6,10 @@ public:
     fill(fI,fI+CHAR,-1);
     
     for(int i=0;i<str.length();i++){
-        if(fI[str[i]]==-1)
-        fI[str[i]]=i;
+        if(fI[str[i]-'a']==-1)
+        fI[str[i]-'a']=i;
         else
-        fI[str[i]]=-2;
+        fI[str[i]-'a']=-2;
     }
     int res=INT_MAX;
     for(int i=0;i<CHAR;i++){
