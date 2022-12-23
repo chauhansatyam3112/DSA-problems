@@ -25,10 +25,7 @@ public:
             {
                 int cnt = 0;
                 int q = p;
-            
-            
-            
-            while(mp.find(q)!=mp.end()){
+             while(mp.find(q)!=mp.end()){
                 q++;cnt++;}
                 maxi=max(cnt,maxi);}
             
