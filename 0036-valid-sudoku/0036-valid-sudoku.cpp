@@ -1,7 +1,7 @@
 class Solution {
 public:
     bool isValidSudoku(vector<vector<char>>& board) {
-        unordered_map<char,int>mp;
+       /* unordered_map<char,int>mp;
         for(int i=0;i<board.size();i++)
         {
             for(int j=0;j<board[i].size();j++)
@@ -47,7 +47,30 @@ public:
             nowj=0; limitj=3; nowi+=3; limiti+=3;
         }
     }
-    return true;
+    return true;*/
+        set<string>s;
+        for(int i=0;i<9;i++)
+        {
+            for(int j=0;j<9;j++)
+            {
+                if(board[i][j]!='.')
+                {
+                    string row=board[i][j]+to_string(i)+"row";
+                    string col=board[i][j]+to_string(j)+"col";
+                    string box="box"+to_string((i/3)*3+(j/3))+board[i][j];
+                    
+                
+                if(s.find(row)==s.end() && s.find(col)==s.end() && s.find(box)==s.end())
+                {
+                    s.insert(row);s.insert(col);s.insert(box);
+                }else
+                {
+                return false;
+                    
+                }
+                }
+            }
+        }return true;
         
             
             
