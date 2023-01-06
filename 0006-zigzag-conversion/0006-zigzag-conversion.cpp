@@ -44,7 +44,7 @@ public:
          if(n == 1){
             return s;
         }
-        // sine wave traversal, just like spiral traversal
+        
         string ans = "";
         string flag = "";
         int cnt = 0;
