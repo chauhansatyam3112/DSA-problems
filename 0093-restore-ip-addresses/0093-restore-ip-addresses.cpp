@@ -11,7 +11,7 @@ public:
          string str="";
          for(int i=index;i<s.size() && temp.size()<4;i++)
          {
-             if(s[i]-'0'>9)continue;
+            // if(s[i]-'0'>9)continue;
              str+=s[i];
              int value=stoi(str);
              if(value>=0 && value<=255)
@@ -27,10 +27,7 @@ public:
              }
          }
          
-         
-         
-         
-         
+              
      }
     vector<string> restoreIpAddresses(string s){
       vector<string>ans;
