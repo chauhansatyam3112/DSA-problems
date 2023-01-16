@@ -1,20 +1,27 @@
 class Solution {
 public:
     int characterReplacement(string s, int k) {
-         vector<int> m(128, 0);
-        int count = 0, begin = 0, end = 0, d = 0;
-        while(end < s.size())
-        {
-            m[s[end]]++;
-            if (m[s[end]] > count) count = m[s[end]];
-            end++;
-            if (end - begin - count > k)
-            {
-                m[s[begin]]--;
-                begin++;
+         vector<int> counts(26, 0);
+        int start = 0;
+        int maxCharCount = 0;
+        int n = s.length();
+        int result = 0;
+        for(int end = 0; end < n; end++){
+            counts[s[end]-'A']++;
+            if(maxCharCount < counts[s[end]-'A']){
+                maxCharCount = counts[s[end]-'A'];
             }
+            while(end-start-maxCharCount+1 > k){
+                counts[s[start]-'A']--;
+                start++;
+                for(int i = 0; i < 26; i++){
+                    if(maxCharCount < counts[i]){
+                        maxCharCount = counts[i];
+                    }
+                }
+            }
+            result = max(result, end-start+1);
         }
-        d = end - begin;
-        return d;
+        return result;
     }
 };
