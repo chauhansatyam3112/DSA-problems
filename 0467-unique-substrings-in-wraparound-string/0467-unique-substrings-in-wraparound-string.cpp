@@ -5,7 +5,7 @@ public:
         vector<int> arr(26,0);
         arr[p[0]-'a']=1;
         for (int i=1;i<p.size();i++){
-            if ((p[i-1]-'a'+1)%26==p[i]-'a') // Checking for continuation
+            if ((p[i-1]-'a'+1)%26==p[i]-'a') 
                 prev_ans++;
             else
                 prev_ans=1;
