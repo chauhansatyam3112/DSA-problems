@@ -6,21 +6,35 @@ public:
             ans.push_back(output);
             return;}
         
-        if(isalpha(s[i]))
-        {
-            string curr1=output;
-                curr1.push_back(tolower(s[i]));
-                solve(s,ans,curr1,i+1);
-            string curr2=output;
-                curr2.push_back(toupper(s[i]));
-                solve(s,ans,curr2,i+1);
-        }
-       else{
-                             output.push_back(s[i]);
-           solve(s,ans,output,i+1);
+//         if(isalpha(s[i]))
+//         {
+//             string curr1=output;
+//                 curr1.push_back(tolower(s[i]));
+//                 solve(s,ans,curr1,i+1);
+//             string curr2=output;
+//                 curr2.push_back(toupper(s[i]));
+//                 solve(s,ans,curr2,i+1);
+//         }
+//        else{
+//                              output.push_back(s[i]);
+//            solve(s,ans,output,i+1);
                              
            
-       }
+//        }
+        if(isalpha(s[i]))
+        {
+            output.push_back(tolower(s[i]));
+            solve(s,ans,output,i+1);
+            output.pop_back();
+            
+            output.push_back(toupper(s[i]));
+                solve(s,ans,output,i+1);
+            output.pop_back();
+        }else{
+            output.push_back(s[i]);
+            solve(s,ans,output,i+1);
+            output.pop_back();
+        }
         
            
             
