@@ -1,18 +1,18 @@
 class Solution {
 public:
-    string Abhinav(string &s,string &p,int idx1,int idx2,vector<vector<string>>&dp){
+    string solve(string &s,string &p,int idx1,int idx2,vector<vector<string>>&dp){
         if(idx1<0 or idx2<0) return "";
      
      if(dp[idx1][idx2]!="") return dp[idx1][idx2];
      
         if(s[idx1]==p[idx2]){
             
-         return dp[idx1][idx2] = s[idx1]+Abhinav(s,p,idx1-1,idx2-1,dp);
+         return dp[idx1][idx2] = s[idx1]+solve(s,p,idx1-1,idx2-1,dp);
             
         }
-string right = Abhinav(s,p,idx1-1,idx2,dp);
+string right = solve(s,p,idx1-1,idx2,dp);
      
-string left = Abhinav(s,p,idx1,idx2-1,dp);
+string left = solve(s,p,idx1,idx2-1,dp);
      
      if(right.size()>=left.size()) {
          
@@ -30,7 +30,7 @@ string left = Abhinav(s,p,idx1,idx2-1,dp);
          
         vector<vector<string>>dp(n+1,vector<string>(m+1,""));
         
-     string yp=Abhinav(str1,str2,n-1,m-1,dp);
+     string yp=solve(str1,str2,n-1,m-1,dp);
         
         reverse(yp.begin(),yp.end());
         
