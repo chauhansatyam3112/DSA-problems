@@ -10,11 +10,11 @@ public:
         
         
         if(s[i]==t[j])
-           return  dp[i][j]=solve(s,t,n,m,i+1,j+1,dp)+solve(s,t,n,m,i+1,j,dp);
+             dp[i][j]=solve(s,t,n,m,i+1,j+1,dp)+solve(s,t,n,m,i+1,j,dp);
         else
-           return dp[i][j]=solve(s,t,n,m,i+1,j,dp);
+            dp[i][j]=solve(s,t,n,m,i+1,j,dp);
         
-       // return dp[i][j];
+      return dp[i][j];
             
     }
     int numDistinct(string s, string t) {
