@@ -15,7 +15,7 @@ public:
                 st.pop();     
             }
              if(st.empty())
-                    ans.push_back(0);
+             ans.push_back(0);
             
             if( !st.empty() && temp[st.top()]>=temp[i]){
                
