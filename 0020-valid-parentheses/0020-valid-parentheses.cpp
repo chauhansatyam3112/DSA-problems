@@ -1,25 +1,45 @@
 class Solution {
 public:
+    bool check(char x,char y)
+    {
+        return ((x=='('&& y==')') ||( x=='[' && y==']') || (x=='{' && y=='}'));
+     }
+    
     bool isValid(string s) {
-        if(s.length()%2==0)
+        
+        if(s.size()==1)
         {
-            stack <char> st;
-            st.push('#');
-            for(int i=0;i<s.length();i++){
-                if(s[i]=='(' || s[i]=='{'||s[i]=='[')
+            return false;
+        }
+        stack<char>st;
+        for(int i=0;i<s.length();i++)
+        {
+            if(s[i]=='(' || s[i]=='{' || s[i]=='[')
+            {
                 st.push(s[i]);
-                else
+            }
+            else if( !st.empty() && (s[i]==')' || s[i]=='}' || s[i]==']'))
+            {
+                char p=st.top();
+                if(check(p,s[i]) && !st.empty())
                 {
-                    char top = st.top();
-                    if((s[i]==')'&& top=='(')||(s[i]=='}'&& top=='{')||(s[i]==']'&& top=='['))
                     st.pop();
-                    else
-                        return false;
+                    
+                }
+                else{
+                    return false;
                 }
             }
-            return (st.top()=='#');
+            else{
+                return false;
+            }
             
         }
-        return false;
+        if(st.empty()==false)
+        {
+            return false;
+        }
+        return true;
+                        
     }
 };
