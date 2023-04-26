@@ -11,18 +11,47 @@
  */
 class Solution {
 public:
-    void  solve(TreeNode* root,int &sum)
-    {
-        if(root==NULL)
-            return;
+//     void  solve(TreeNode* root,int &sum)
+//     {
+//         if(root==NULL)
+//             return;
         
-        if(root->left && root->left->left==NULL and root->left->right==NULL)
+//         if(root->left && root->left->left==NULL and root->left->right==NULL)
+//         {
+//             sum+=root->left->val;
+//         }
+//         solve(root->left,sum);
+//         solve(root->right,sum);
+//     }
+    void solve(TreeNode* root,int &sum)
+    {
+        queue<TreeNode*>q;
+        
+        q.push(root);
+        while(!q.empty())
         {
-            sum+=root->left->val;
-        }
-        solve(root->left,sum);
-        solve(root->right,sum);
+            TreeNode* node=q.front();
+             q.pop();
+            if(node->left){
+             q.push(node->left);
+               
+            
+            if(node->left->left==NULL and node->left->right==NULL)
+                sum+=node->left->val;
+          
+            }
+                
+                
+                if(node->right)
+                {
+                    q.push(node->right);
+                }
+            
+            
+        
     }
+    }
+    
     int sumOfLeftLeaves(TreeNode* root) {
         
         int sum=0;
