@@ -1,11 +1,16 @@
 class Solution {
 public:
     vector<vector<int>> generateMatrix(int n) {
-        vector<vector<int>>m(n,vector<int>(n,0));
-        int top=0,left=0,right=n-1,bottom=n-1;
-        int c=1;
         
-        while(left<=right && top<=bottom)
+        vector<vector<int>>m(n,vector<int>(n,0));
+        
+       // int direction=1;
+        
+        int top=0,right=n-1,left=0,bottom=n-1;
+        int c=1;
+     //   vector<int>temp(n);
+        
+     while(left<=right && top<=bottom)
         {
             
             for(int i=left;i<=right;i++)
@@ -30,6 +35,8 @@ public:
             }
             left++;
         }
+       
         return m;
+       
     }
 };
