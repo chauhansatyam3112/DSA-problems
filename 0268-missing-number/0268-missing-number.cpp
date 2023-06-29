@@ -1,32 +1,46 @@
 class Solution {
 public:
     int missingNumber(vector<int>& nums) {
-        // int count=0;
-        // int n=nums.size();sort(nums.begin(),nums.end());int p=0;int j=0;
-        // for(int i=0;i<n;i++ ){
-        //     if(nums[j]==i)
-        //     {
-        //         count++;j++;
-        //     }
-        // }
-        // return count;
+        int n=nums.size();
         
-    /*sort(nums.begin(),nums.end());
-    int left = 0, right = nums.size(), mid= (left + right)/2;
-    while(left<right){
-        mid = (left + right)/2;
-        if(nums[mid]>mid) right = mid;
-        else left = mid+1;
-    }
-    return left;*/
+//         for(int i=0;i<=n-1;i++)
+//         {
+//             if(nums[i]==n)
+//             {
+//                 continue;
+//             }
+//             if(nums[i]!=-1)
+                
+//          // -9 -6 -4 -2 -3 -5 -7 -0 1
+//          //  0  1  2  3  4  5  6  7 8
+                
+//                 //-3 -0 1
+//                 // 0  1 2
+          
+//             nums[nums[i]]=-1*nums[nums[i]];
+//             else{
+//                 int p=-1*nums[i];
+//                 nums[p]=-1*nums[p];
+             
+//             }  
+//         }
+//         int ans=nums.size();
+//         for(int i=0;i<=n-1;i++)
+//         {
+//             if(nums[i]>0){
+//                 ans=i;
+//              break;}
+//         }
+//         return ans;
+        
         int xorr=0;
-        for(int i=0;i<nums.size();i++)
+        for(int i=0;i<n;i++)
+        {
+            xorr^=i+1;
+        }
+        for(int i=0;i<n;i++)
         {
             xorr^=nums[i];
-        }
-        for(int i=0;i<=nums.size();i++)
-        {
-            xorr^=i;
         }
         return xorr;
     }
