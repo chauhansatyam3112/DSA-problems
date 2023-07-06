@@ -14,28 +14,31 @@ class Solution{
     vector<int> leaders(int a[], int n){
         // Code here
         
-       // map<int,int>mp;
-        vector<int>v;
-        int leader=a[n-1];
-        v.push_back(a[n-1]);
+        vector<int>ans;
         
+        int  leader=a[n-1];
+        
+        ans.push_back(a[n-1]);
         
         for(int i=n-2;i>=0;i--)
         {
-           if(a[i]<leader)
-           {
-               continue;
-           }
-           else 
-           {
-              leader=a[i];
-              v.push_back(a[i]);
-           }
-            
+            if(a[i]<leader)
+            {
+                continue;
+                
+            }
+            else
+            {
+                leader=a[i];
+                
+                ans.push_back(a[i]);
+                
+            }
         }
-        
-    reverse(v.begin(),v.end());
-        return v;
+       
+       reverse(ans.begin(),ans.end());
+       return ans;
+       
         
         
     }
