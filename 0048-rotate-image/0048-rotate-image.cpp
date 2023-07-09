@@ -1,29 +1,20 @@
 class Solution {
 public:
-    void rotate(vector<vector<int>>& mat) {
-        int n=mat.size();
-        int m=mat[0].size();
+    void rotate(vector<vector<int>>& matrix) {
         
-        //first tanspose the matrix;
-        //then reverse the elemnets
-        
-        for(int i=0;i<n;i++)
+        for(int i=0;i<matrix.size();i++)
         {
-            for(int j=i+1;j<m;j++)
+            for(int j=0;j<i;j++)
             {
-                swap(mat[i][j],mat[j][i]);
+               
+             swap (matrix[i][j],matrix[j][i]);
             }
         }
-        //reverse
-        for(int i=0;i<n;i++)
+        for(int i=0;i<matrix.size();i++)
         {
-            int low=0,high=n-1;
-            while(low<=high)
-            {
-                swap(mat[i][low],mat[i][high]);
-                low++;high--;
-            }
-         }
-       
+            
+            reverse(matrix[i].begin(),matrix[i].end());
+           
+        }
     }
 };
