@@ -28,19 +28,25 @@ public:
 //     }
     TreeNode* searchBST(TreeNode* root, int val) {
         
+//         TreeNode* ans= new TreeNode();
         
-    
+//       if (root == nullptr || root->val == val)
+//         return root;
         
+//      if (val < root->val)
+//         return searchBST(root->left, val);
         
-        TreeNode* ans= new TreeNode();
+//      return searchBST(root->right, val);
         
-      if (root == nullptr || root->val == val)
+        while(root!=NULL && root->val!=val)
+        {
+            root=val<root->val?root->left:root->right;
+            
+        }
         return root;
         
-     if (val < root->val)
-        return searchBST(root->left, val);
         
-     return searchBST(root->right, val);
+        
         
 //         TreeNode* ans=new TreeNode();
 //         if(root->val==val)
