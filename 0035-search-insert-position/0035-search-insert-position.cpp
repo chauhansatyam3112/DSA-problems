@@ -1,20 +1,35 @@
 class Solution {
 public:
-    int searchInsert(vector<int>& nums, int x) {
-        //return lower_bound(nums.begin(),nums.end(),target)-nums.begin();
+    int searchInsert(vector<int>& arr, int target) {
         
-        int low=0;int high=nums.size()-1;
+        
+        int low=0,high=arr.size()-1;
+        int ans=0;
+        
         while(low<=high)
         {
-            int mid=(high+low)/2;
-            if(nums[mid]==x)
+            int mid=low+(high-low)/2;
+            
+            
+            if(arr[mid]==target)
+            {
                 return mid;
-            else if(nums[mid]>x) high=mid-1;
-            else{
-                low=mid+1;
             }
-        }return low;
-        
-        
+            else if(arr[mid]>target)
+            {
+                high=mid-1;
+            }
+            else 
+            {
+                low=mid+1;
+               
+            }
+            
+          
+            
+           
+           
+        }
+        return low;
     }
 };
