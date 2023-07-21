@@ -1,16 +1,26 @@
 class Solution {
 public:
-    int countGoodNumbers(long long n) {
-        long result =n%2==0? 1:5;
-int MOD=1e9+7;
-long x=20;
-
-    for(long i=n/2;i>0;i=i/2)
-    {
-        if(i%2!=0) result=result*x%MOD;
-        x=x*x%MOD;
-    }
     
-    return result;
+   long long powerMod(int a,long long b,int mod)
+   {
+       if(b==0)
+       {
+           return 1;
+       }
+       
+       long long x=powerMod(a,b/2,mod);
+       
+       if(b%2==0)
+       {
+           return(x*x)%mod;
+       }
+       else{
+               return (((a * x) % mod) * x) % mod;     
+
+       }
+   }
+    int countGoodNumbers(long long n) {
+         int mod = 1e9+7;
+        return (powerMod(5, (n + 1) / 2, mod) * powerMod(4, n / 2, mod)) % mod;
     }
 };
