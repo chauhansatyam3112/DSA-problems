@@ -18,8 +18,10 @@ public:
             return sign*res;
         }
         
-        res=solve(s,i+1,sign,(res*10+(s[i]-'0')));
-        return res;
+        res=res*10+s[i]-'0';
+        
+        return solve(s,i+1,sign,res);
+        //return res;
     }
     int myAtoi(string s) {
         
