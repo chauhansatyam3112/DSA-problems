@@ -21,7 +21,7 @@ long long merge(long long arr[], long long left, long long mid, long long right)
             low++;
         } else {
             temp.push_back(arr[high]);
-            cnt += (mid - low + 1); // Corrected line to count inversions
+            cnt += (mid - low + 1); 
             high++;
         }
     }
