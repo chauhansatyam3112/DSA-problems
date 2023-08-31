@@ -10,6 +10,7 @@ public:
 	// function to return sum of  1, 2, ... n
 	long long seriesSum(int n) {
 	    // code here
+	    
 	    long long ans=1LL*n*(n+1)/2;
 	    return 1LL*ans;
 	}
