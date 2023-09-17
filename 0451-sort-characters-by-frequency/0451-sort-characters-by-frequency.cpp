@@ -1,37 +1,35 @@
 class Solution {
-    private:
-    
-         static bool cmp(const pair<int, int>  &p1, const pair<int, int> &p2)
-{
-    return p1.second < p2.second;
-}
-    
-    
 public:
-    
-    
-   
-         
     string frequencySort(string s) {
-        string ans="";
-     unordered_map<char,int>mp;
+        
+        priority_queue<pair<int,char>>pq;
+        map<char,int>mp;
+        
+      for(int i=0;i<s.length();i++)
+      {
+          mp[s[i]]++;
+         
+      }
+        
+        for(auto it:mp)
+        {
+            pq.push({it.second,it.first});
+        }
+        string ans;
+        while(!pq.empty())
+        {
+           int p=pq.top().first;
+            cout<<p<<" ";
+            
+            
+            while(p--)
+            {
+                ans+=pq.top().second;
+            }
+            pq.pop();
+            
+        }
       
-        for(auto it:s)
-        {
-            mp[it]++;
-        }
-        
-      vector<pair<char,int>>v(mp.begin(),mp.end());
-        
-        
-        sort(v.begin(),v.end(),cmp);
-        for(auto  it:v)
-        {
-            int x=it.second;
-            while(x--)
-            ans+=it.first;
-        }
-        reverse(ans.begin(),ans.end());
         return ans;
     }
 };
