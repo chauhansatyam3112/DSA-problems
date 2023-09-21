@@ -11,6 +11,7 @@ public:
         for (int j = i; j < n; j++) {
             
             mp[s[j]]++;
+            if(mp.size()==1)continue;
             
             int mostFreq = 0, leastFreq = INT_MAX;
             
