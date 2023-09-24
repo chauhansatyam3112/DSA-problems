@@ -1,27 +1,41 @@
 class Solution {
 public:
     int characterReplacement(string s, int k) {
-         vector<int> counts(26, 0);
-        int start = 0;
-        int maxCharCount = 0;
-        int n = s.length();
-        int result = 0;
-        for(int end = 0; end < n; end++){
-            counts[s[end]-'A']++;
-            if(maxCharCount < counts[s[end]-'A']){
-                maxCharCount = counts[s[end]-'A'];
-            }
-            while(end-start-maxCharCount+1 > k){
-                counts[s[start]-'A']--;
-                start++;
-                for(int i = 0; i < 26; i++){
-                    if(maxCharCount < counts[i]){
-                        maxCharCount = counts[i];
-                    }
-                }
-            }
-            result = max(result, end-start+1);
-        }
-        return result;
+        
+        //abcccde
+        //for this string if we have to do minimal changes so that all the string
+        // become same,then we will first check for maximaxl frequenct char
+        // and subtract it from the len of the string
+        // c->3
+        //7-3=4 replacements needed
+        
+//         now here 4 is k form the netire string;
+        
+//         so for every window if we just calculate the no freq of every chars and find 
+//         we will get the ans;
+        
+        // len of substring-no of most requnet char in that substring<=k;
+        
+        
+        unordered_map<char,int>mp;
+        int j=0;
+        int cnt=0,maxi=0,ans=0;
+      for(int i=0;i<s.length();i++)
+      {
+          mp[s[i]]++;
+          
+         maxi=max(mp[s[i]],maxi);
+          
+          if(i-j+1-maxi>k)
+          {
+              mp[s[j]]--;
+              j++;
+              
+          }
+          
+          ans=max(ans,i-j+1);
+          
+      }
+        return ans;
     }
 };
