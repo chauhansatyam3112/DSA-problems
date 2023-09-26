@@ -19,6 +19,7 @@ public:
         int sum=0;
         
         mp[0]=1;
+        
         for(int i=0;i<nums.size();i++)
         {
             sum+=nums[i];
