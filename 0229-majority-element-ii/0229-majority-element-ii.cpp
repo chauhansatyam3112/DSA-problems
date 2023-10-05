@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<int> majorityElement(vector<int>& nums) {
-    int ele1 = INT_MAX, ele2 = INT_MAX; // Initialize with sentinel values
+    int ele1 = INT_MAX, ele2 = INT_MAX; 
     int cnt1 = 0, cnt2 = 0;
     
     for(int i = 0; i < nums.size(); i++) {
