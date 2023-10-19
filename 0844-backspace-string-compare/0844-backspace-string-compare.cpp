@@ -1,29 +1,30 @@
 class Solution {
 public:
+    string solve(string str)
+    {
+        int cnt=0;
+        
+        string ans;
+        
+        for(int it=str.length()-1;it>=0;it--)
+        {
+            if(str[it]=='#')cnt++;
+            
+            else{
+                
+                if(cnt>0)
+                {
+                    cnt--;
+                }
+                else{
+                    ans+=str[it];
+                }
+            }
+        }
+        return ans;
+    }
     bool backspaceCompare(string s, string t) {
         
-        stack<char>st,ts;
-        
-        for(auto it:s)
-        {
-           if(it!='#')st.push(it);
-            
-           if(it=='#' && !st.empty())
-           {
-               st.pop();
-           }
-        }
-        
-        for(auto it:t)
-        {
-            if(it!='#')ts.push(it);
-            
-            if(it=='#' && !ts.empty())
-            {
-                ts.pop();
-            }
-            
-        }
-        return st==ts;
+        return solve(s)==solve(t);
     }
 };
