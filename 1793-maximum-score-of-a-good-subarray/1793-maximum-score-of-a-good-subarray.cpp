@@ -15,10 +15,13 @@ public:
 
    
     for (int i = 0; i < n; i++) {
+        
         while (!prevStack.empty() && arr[prevStack.top()] >=arr[i]) {
+            
             prevStack.pop();
         }
         if (!prevStack.empty()) {
+            
             left[i] = prevStack.top();
         }
         prevStack.push(i);
@@ -30,14 +33,17 @@ public:
     }
         
         for(int i=0;i<arr.size();i++)cout<<left[i] <<" ";
+        
         cout<<endl;
 
   
     for (int i = n - 1; i >= 0; i--) {
         while (!nextStack.empty() && arr[nextStack.top()] >=arr[i]) {
+            
             nextStack.pop();
         }
         if (!nextStack.empty()) {
+            
             right[i] = nextStack.top();
         }
         nextStack.push(i);
