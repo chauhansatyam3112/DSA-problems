@@ -19,7 +19,9 @@ public:
 
     for (int i = 1; i < n; i++) {
         if (v[i].second >=en) {
+            
             cnt++;
+            
             en = v[i].first;
         }
     }
