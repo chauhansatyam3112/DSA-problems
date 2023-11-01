@@ -12,21 +12,35 @@
 class Solution {
 public:
    unordered_map<int, int> mp;
-    void dfs(TreeNode* root) {
+    
+    void solve(TreeNode* root) {
+        
         if (!root) return;
+        
         else mp[root->val]++;
-        dfs(root->left);
-        dfs(root->right);
+        
+       solve(root->left);
+        
+        solve(root->right);
+        
     }
     vector<int> findMode(TreeNode* root) {
+        
         vector<int> res;
-        int tMax = -1;
-        dfs(root);
-        for (auto e: mp) {
-            if (e.second == tMax) res.push_back(e.first);
-            else if (e.second > tMax) {
-                tMax = e.second;
-                res = {e.first};
+        
+        int maxi = -1;
+        
+        solve(root);
+        
+        for (auto it: mp) {
+            
+            if (it.second == maxi) res.push_back(it.first);
+            
+            else if (it.second > maxi) {
+                
+                maxi = it.second;
+                
+                res = {it.first};
             }
         }
         return res;
