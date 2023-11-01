@@ -19,12 +19,17 @@ public:
             }
             
            if (!st.empty() && nums2[i] < st.top()) {
-        mp[nums2[i]] = st.top();
-    st.push(nums2[i]);
-} else {
-    mp[nums2[i]] = -1;
-    st.push(nums2[i]);
-}
+               
+            mp[nums2[i]] = st.top();
+               
+           st.push(nums2[i]);
+               
+        } else {
+               
+           mp[nums2[i]] = -1;
+               
+          st.push(nums2[i]);
+        }
            
            
             
