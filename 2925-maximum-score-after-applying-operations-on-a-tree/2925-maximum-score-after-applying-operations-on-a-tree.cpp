@@ -1,26 +1,26 @@
 class Solution {
 public:
-    long long dfs(int i,vector<int>adj[],vector<int>& v,vector<int>&vis)
+    long long solve(int i,vector<int>v[],vector<int>& values,vector<int>&vis)
     {  
-        if(adj[i].size()==1 && i!=0)
+        if(v[i].size()==1 && i!=0)
             
-       return (long long)v[i];
+       return (long long)values[i];
         
-       long long s=0;
+       long long sum=0;
         
        vis[i]=1;
         
-       for(auto j:adj[i])
+       for(auto it:v[i])
        {    
-           if(vis[j]==1)
+           if(vis[it]==1)
                
             continue;
            
-           s=s+dfs(j,adj,v,vis);
+           sum+=solve(it,v,values,vis);
        } 
         
        
-        return min((long long)v[i],s);
+        return min((long long)values[i],sum);
     }
       
     
@@ -43,7 +43,7 @@ public:
         
         vector<int>vis(n,0);
         
-        long long res=dfs(0,v,values,vis);
+        long long res=solve(0,v,values,vis);
         
         return sum-res;
     }
