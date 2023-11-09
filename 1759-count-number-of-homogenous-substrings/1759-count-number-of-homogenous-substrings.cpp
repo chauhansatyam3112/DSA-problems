@@ -20,11 +20,21 @@ public:
             
             if (len & 1) {
                 
-        ans = (ans + 1LL * len * (len - len / 2)) % mod;
                 
-    } else {
-        ans = (ans + 1LL * len * (len / 2) + len / 2) % mod;
-    }
+          ans = (ans + 1LL * len * (len - len / 2)) % mod;
+                
+                
+                // cout<<ans%mod<<endl;
+            }
+                
+          else {
+              
+           ans = (ans + 1LL * len * (len / 2) + len / 2) % mod;
+              
+              // cout<<ans%mod<<endl;
+          }
+              
+    
             i=j;
             
         }
