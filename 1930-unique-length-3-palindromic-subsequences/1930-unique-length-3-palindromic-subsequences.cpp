@@ -24,6 +24,7 @@ public:
             char curr = it.first;
 
             if (last[curr] > first[curr]) {
+                
                 unordered_set<char> st;
 
                 for (int j = first[curr] + 1; j < last[curr]; j++) {
