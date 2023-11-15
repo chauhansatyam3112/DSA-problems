@@ -8,6 +8,7 @@ public:
         int ans = 0;
 
         for (int i = 0; i < s.length(); i++) {
+            
             if (first.find(s[i])==first.end()) {
                 
                 first[s[i]] = i;
@@ -19,12 +20,14 @@ public:
         }
 
         for (auto& it : first) {
-            char currentChar = it.first;
+            
+            char curr = it.first;
 
-            if (last[currentChar] > first[currentChar]) {
+            if (last[curr] > first[curr]) {
                 unordered_set<char> st;
 
-                for (int j = first[currentChar] + 1; j < last[currentChar]; j++) {
+                for (int j = first[curr] + 1; j < last[curr]; j++) {
+                    
                     st.insert(s[j]);
                 }
 
