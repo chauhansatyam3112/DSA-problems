@@ -25,12 +25,12 @@ public:
 
         if (nums1[i] > x1) {
             
-            if (nums2[i] > x1 || nums1[i] > x2) return -1;
+            if (nums2[i] > x1 ) return -1;
             
             cnt1++;
         } else if (nums2[i] > x2) {
             
-            if (nums1[i] > x2 || nums2[i] > x1) return -1;
+            if (nums1[i] > x2) return -1;
             cnt1++;
         }
     }
