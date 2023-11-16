@@ -20,9 +20,9 @@ public:
      
     int totalMinutes2 = minute(hours2, minutes2);
 
-    int differenceInMinutes = abs(totalMinutes2 - totalMinutes1);
+    int diff = abs(totalMinutes2 - totalMinutes1);
 
-    return differenceInMinutes <=59;
+    return diff <=59;
 }
 
 vector<string> findHighAccessEmployees(vector<vector<string>>& nums) {
