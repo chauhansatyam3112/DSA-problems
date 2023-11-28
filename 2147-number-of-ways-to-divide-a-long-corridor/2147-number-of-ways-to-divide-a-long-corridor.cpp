@@ -11,6 +11,7 @@ public:
         {
             if(str[i]=='S')v.push_back(i);
         }
+        
         if(v.size()%2!=0 || v.size()==0)return 0;
         
         long long ans=1;
