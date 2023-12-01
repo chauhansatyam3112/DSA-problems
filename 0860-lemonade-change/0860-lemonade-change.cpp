@@ -9,7 +9,9 @@ public:
         for(int i=0;i<bills.size();i++)
         {
             if(bills[i]==5){
+                
                 mp[bills[i]]++;
+                
                 continue;
             }
             
