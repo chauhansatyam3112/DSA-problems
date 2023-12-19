@@ -67,6 +67,7 @@ public:
             if(right==-1 && isPalindrome(high)) {
                 right=high;
             }
+            
             low--;
             
             high++;
