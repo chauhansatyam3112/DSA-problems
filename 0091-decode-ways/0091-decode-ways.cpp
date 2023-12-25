@@ -1,29 +1,41 @@
 class Solution {
 public:
-    
-    int decode(int i,string s,int* dp)
-    {
-        if(i>=s.size())
+     int solve(string str, int idx,vector<int>&dp) {
+         
+       if (idx==str.length()) {
             return 1;
-        if(dp[i]!=-1)return dp[i];
-        int ans=0;
-        int op1=s[i]-'0';
-        int op2=0;
-        if(i<s.size()-1)
-        {
-            op2=op1*10+s[i+1]-'0';
         }
-        if(op1>0) ans+=decode(i+1,s,dp);
-        if(op1>0 && op2>0 && op2<=26) ans+=decode(i+2,s,dp);
-        return dp[i]=ans;
-        
+
+        if (str[idx] == '0') {
+            
+            return 0;
+        }
+         
+         if(dp[idx]!=-1)return dp[idx];
+
+        int ans=0;
+
+        if (str[idx + 1] != '0') {
+            
+            ans=solve(str, idx + 1,dp);
+        }
+
+        if (idx + 1 < str.length() && stoi(str.substr(idx, 2)) <= 26) {
+            
+            ans+=solve(str, idx + 2,dp);
+        }
+
+        return dp[idx]=ans;
     }
+
     int numDecodings(string s) {
-        int dp[101];
-      
         
-            memset(dp,-1,sizeof dp);
-         int ans= decode(0,s,dp);
-        return ans;
+        vector<int>dp(s.length()+1,-1);
+        
+        if (s[0] == '0') {
+            return 0;
+        }
+        return solve(s, 0,dp);
+    
     }
 };
