@@ -20,7 +20,7 @@ public:
 
         if (ch == str[idx]) {
             
-            take = solve(str, idx + 1, ch, cnt + 1, k) + (st.count(cnt) ? 1 : 0);
+            take = solve(str, idx + 1, str[idx], cnt + 1, k) + (st.count(cnt) ? 1 : 0);
             
         } else {
             
