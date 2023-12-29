@@ -1,6 +1,6 @@
 class Solution {
 public:
-     int solve(vector<int>& nums, int d, int idx, vector<std::vector<int>>& dp) {
+     int solve(vector<int>& nums, int d, int idx, vector<vector<int>>& dp) {
          
         if (d > nums.size() - idx) return INT_MAX;
          
