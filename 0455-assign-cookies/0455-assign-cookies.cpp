@@ -4,7 +4,9 @@ public:
         
         
         sort(s.begin(),s.end());
+        
         set<int>st;
+        
         int cnt=0;
         
         for(int i=0;i<g.size();i++)
