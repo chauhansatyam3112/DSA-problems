@@ -24,6 +24,7 @@ public:
 //             }
 //         }
 //         return v.size();
+        
         vector<int>dp(n,1),hash(n,1);
         int maxi=1;
         int idx=0;
@@ -56,7 +57,9 @@ public:
             
         }
         reverse(v.begin(),v.end());
+        
         for(auto it:v)cout<<it<<" ";
+        
         return  maxi;
         
     }
