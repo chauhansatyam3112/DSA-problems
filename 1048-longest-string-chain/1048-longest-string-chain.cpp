@@ -9,6 +9,7 @@ public:
     {
         
         int n=big.length(),m=smol.length();
+        
         if(n!=m+1)return false;
         
         int i=0,j=0;
@@ -72,8 +73,11 @@ public:
 //         return maxi;
         
         int n=words.size();
+        
         sort(words.begin(),words.end(),comp);
+        
         vector<int>dp(n,1);
+        
         for(int i=0;i<n;i++)
         {
             for(int prev=0;prev<i;prev++)
