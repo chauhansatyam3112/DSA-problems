@@ -15,9 +15,15 @@ public:
     {
         if(!root)
             return;
+        
         if(!root->left and !root->right)
+            
+            
+            
             ans.push_back(root->val);
+        
         solve(root->left,ans);
+        
         solve(root->right,ans);
             
     }
