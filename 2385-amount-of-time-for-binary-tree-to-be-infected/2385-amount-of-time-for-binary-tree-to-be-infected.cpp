@@ -11,81 +11,88 @@
  */
 class Solution {
 public:
-    TreeNode * makeParent(TreeNode* root,unordered_map<TreeNode*,TreeNode*>&mp,int start)
+    
+    
+    void makeGraph(unordered_map<int,vector<int>>&mp,int parent,TreeNode* curr)
     {
+        if(curr==NULL)return ;
         
-        queue<TreeNode*>q;
-        q.push(root);
-        TreeNode* res;
-        while(!q.empty())
+        if(parent!=-1)
         {
-            
-            auto x=q.front();q.pop();
-            if(x->val==start)
-                res=x;
-                
-            
-            if(x->left)
-            {
-                mp[x->left]=x;
-                q.push(x->left);
-            }
-            if(x->right)
-            {
-                mp[x->right]=x;
-                    
-                q.push(x->right);
-            }
-            
+            mp[curr->val].push_back(parent);
         }
-        return res;
+        
+        if(curr->left)
+        {
+            mp[curr->val].push_back(curr->left->val);
+        }
+        
+        
+        if(curr->right)
+        {
+          
+            
+            mp[curr->val].push_back(curr->right->val);
+        }
+        
+        
+        makeGraph(mp,curr->val,curr->left);
+        
+        makeGraph(mp,curr->val,curr->right);
+        
+        
         
     }
     int amountOfTime(TreeNode* root, int start) {
         
-        unordered_map<TreeNode*,TreeNode*>mp;
         
-        TreeNode* target= makeParent(root,mp,start);
+        unordered_map<int,vector<int>>adj;
         
-       
+        makeGraph(adj,-1,root);
         
-        queue<TreeNode*>q;
-        unordered_map<TreeNode*,bool>visited;
+        queue<int>q;
         
-        q.push(target);
+        q.push(start);
         
-        visited[target]=true;
+        unordered_set<int>st;
         
-        int time=-1;
+        st.insert(start);
+        
+        int min=0;
         
         while(!q.empty())
         {
-            int n=q.size();
             
-            for(int i=0;i<n;i++)
+            int n=q.size()
+    ;
+            
+            while(n--)
             {
+                
                 auto x=q.front();q.pop();
                 
-                if(x->left && !visited[x->left])
+                for(auto it: adj[x])
                 {
-                   q.push(x->left);
-                    visited[x->left]=true;
+                    if(st.find(it)==st.end())
+                    {
+                        q.push(it);
+                        
+                        st.insert(it);
+                        
+                    }
                 }
-                if(x->right && !visited[x->right])
-                {
-                    q.push(x->right);
-                    visited[x->right]=true;
-                }
-                if(mp[x] && !visited[mp[x]] )
-                {
-                    q.push(mp[x]);
-                    visited[mp[x]]=true;
-                }
+                
+               
+                
             }
-            time++;
+            
+             min++;
+            
+            
         }
-        return time;
         
+        
+        return min-1;
         
     }
 };
