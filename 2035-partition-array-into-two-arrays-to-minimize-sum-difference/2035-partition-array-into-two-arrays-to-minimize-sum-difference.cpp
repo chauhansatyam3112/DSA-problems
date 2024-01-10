@@ -4,6 +4,7 @@ public:
         
         
         int n=nums.size(),sum=0;
+        
         sum=accumulate(nums.begin(),nums.end(),0);
         
          int N=n/2;
