@@ -8,15 +8,10 @@ public:
             ans.push_back(res);  
                 return;
             }
-           
        }
-    
+           
     for(int i=idx;i<=9;i++)
     {
-        
-           // break;
-          
-        
         
         res.push_back(i);
         sum+=i;
@@ -26,9 +21,9 @@ public:
         
         res.pop_back();
         
-    }
+    }}
         
-    }
+    
     vector<vector<int>> combinationSum3(int k, int n) {
         
         if(k>n)return {};
