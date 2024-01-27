@@ -2,14 +2,29 @@ class Solution {
 public:
     int singleNumber(vector<int>& nums) {
         
-        unordered_map<int,int>mp;
-        for(int i=0;i<nums.size();i++)mp[nums[i]]++;
-        
-        for(auto it:mp)
+       int ans=0;
+           
+        for(int i=0;i<32;i++)
         {
-            if(it.second==1)return it.first;
+            int cnt=0;
+            
+            for(int j=0;j<nums.size();j++)
+            {
+                if(((nums[j]>>i)&1)==1)
+                    
+                    cnt++;
+                
+               cnt%=3;
+                
+            }
+            
+            if(cnt!=0)
+            {
+                ans=ans|(cnt<<i);
+                
+            }
+            
         }
-        return 0;
-        
+        return ans;
     }
 };
