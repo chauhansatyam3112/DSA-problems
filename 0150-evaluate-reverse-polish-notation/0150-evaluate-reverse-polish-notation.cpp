@@ -21,7 +21,9 @@ public:
     {
         return y/x;
     }
+        
         return 0;
+        
 }
     int evalRPN(vector<string>& tokens) {
         
@@ -43,13 +45,14 @@ public:
                 if((!st.empty() && st.size()>=2)){
                     
                 int x=st.top();
+                    
                 st.pop();
                 
                 int y=st.top();
                 
                 st.pop();
                 
-                int res=solve(x,y,tokens[i]);
+                int res= solve(x,y,tokens[i]);
                     
                    st.push(res);
                     
