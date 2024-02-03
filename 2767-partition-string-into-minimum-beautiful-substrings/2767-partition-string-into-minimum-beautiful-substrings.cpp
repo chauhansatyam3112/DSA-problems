@@ -17,7 +17,7 @@ public:
     return num == 1;
 }
     
-  bool check(int i, int j, const std::string& str) {
+  bool check(int i, int j, string& str) {
       
     int len = j - i + 1;
       
