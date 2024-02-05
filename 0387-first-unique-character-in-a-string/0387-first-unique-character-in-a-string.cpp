@@ -18,6 +18,7 @@ public:
         for(auto it:mp) {
            
             vector<int>temp=it.second;
+            
             if(temp.size()>=2)continue;
             
             else
