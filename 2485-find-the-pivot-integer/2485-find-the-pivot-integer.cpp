@@ -21,18 +21,14 @@ public:
         
         for(int i=n;i>=1;i--)
         {
-            sum+=i;
-            
-            for(auto it:st)
-            {
+                sum+=i;
+       
                 if(st.find(sum)!=st.end() && st[sum]==i)
                 {
                     return i;
                 }
                 
-                else break;
-                
-            }
+               
                 
             
            
