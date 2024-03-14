@@ -4,6 +4,7 @@ public:
         int sum=0;
         int cnt=0;
         unordered_map<int,int>mp;
+        
         for(int i=0;i<nums.size();i++)
         {
             sum+=nums[i];
