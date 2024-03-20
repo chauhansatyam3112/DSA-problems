@@ -1,5 +1,6 @@
 class Solution {
 public:
+    
     int leastInterval(vector<char>& tasks, int n) {
         
         
@@ -26,30 +27,42 @@ public:
         int p=n;
         
         int ans=0;
-        while(!pq.empty())
-        {
-            vector<pair<int,char>>v;
-            
+        
+       while(!pq.empty())
+       {
+           vector<pair<int,char>>v;
+           
            for(int i=0;i<n+1;i++)
            {
-               if(!pq.empty()){
-               v.push_back(pq.top());pq.pop();
+               if(!pq.empty())
+               {
+                   v.push_back(pq.top());
+                   pq.pop();
                }
-               cnt++;
            }
-            
-            for(auto it:v)
-            {
-                auto val=it.first-1;
-                
-                if(val>0)
-                
-                 pq.push({val,it.second});
-   
-            }
-            
-       ans += (pq.empty() ? v.size() : n + 1); 
-        }
+           
+           for(auto it:v)
+           {
+               pair<int,char>p=it;
+               
+               int x=p.first;
+               x=x-1;
+               
+               if(x!=0)
+               {
+                   pq.push({x,p.second});
+               }
+           }
+           
+           ans+=(pq.empty())?v.size():n+1;
+           
+           
+           
+           
+       }
+        
         return ans;
+        
+       
     }
 };
