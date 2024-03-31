@@ -1,35 +1,35 @@
 class Solution {
 public:
-        long long countSubarrays(vector<int>& nums, int minK, int maxK) {
-    
-    long res = 0;
-        bool minFound = false,maxFound = false;
-        int start = 0,minStart = 0,maxStart = 0;
+    long long countSubarrays(vector<int>& nums, int minK, int maxK) {
         
-        for(int i=0;i<nums.size();i++){
-            int num = nums[i];
-            if(num < minK || num > maxK){
-                minFound = false;
-                maxFound = false;
-                start = i+1;
+        int minidx=-1,maxidx=-1,idx=-1;
+        
+        long long ans=0;
+        
+        for(int i=0;i<nums.size();i++)
+        {
+            if(nums[i]<minK or nums[i]>maxK)
+                idx=i;
+            
+            if(nums[i]==minK)
+                minidx=i;
+            
+            if(nums[i]==maxK)
+                maxidx=i;
+            
+            long long mini=min(minidx,maxidx);
+            
+            long long temp=mini-idx;
+            
+            if(temp<=0)
+            {
+                ans+=0;
             }
             
-            if(num == minK){
-                minFound  = true;
-                minStart = i;
-            }
-            if(num == maxK){
-                maxFound = true;
-                maxStart = i;
-            }
-            
-            if(minFound && maxFound){
-                res += (min(minStart,maxStart) - start + 1);
+            else{
+                ans+=temp;
             }
         }
-        return res;
-    
-
-        
+        return ans;
     }
 };
