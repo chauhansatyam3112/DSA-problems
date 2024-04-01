@@ -6,7 +6,7 @@ public:
         if(s.length()==1)return 1;
        
         
-       int len=0; 
+      
         
        for(int i=s.length()-1;i>=0; i--)
        {
