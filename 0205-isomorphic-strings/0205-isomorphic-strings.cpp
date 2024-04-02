@@ -10,6 +10,7 @@ public:
         {
             
             if(mp1.find(s[i])==mp1.end() && mp2.find(t[i])==mp2.end()){
+                
             mp1[s[i]]=t[i];
             mp2[t[i]]=s[i];
            }
