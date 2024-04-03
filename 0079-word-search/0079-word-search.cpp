@@ -10,12 +10,17 @@ public:
         
         
         char temp=board[i][j];
+        
         board[i][j]='#';
         
        
         bool down=search(i+1,j,word,idx+1,board,n,m);
+        
+        
         bool left=search(i,j+1,word,idx+1,board,n,m);
+        
          bool up=search(i-1,j,word,idx+1,board,n,m);
+        
         bool right=search(i,j-1,word,idx+1,board,n,m);
         
         board[i][j]=temp;
@@ -25,6 +30,7 @@ public:
     bool exist(vector<vector<char>>& board, string word) {
        
          int n=board.size();
+        
         int m=board[0].size();
         
         
@@ -33,7 +39,10 @@ public:
           for(int j=0;j<board[0].size();j++)
           {
               if(word[0]==board[i][j]){
+                  
+                  
                 if ( search(i,j,word,0,board,n,m))
+                    
                   return true;
                   
                   }
