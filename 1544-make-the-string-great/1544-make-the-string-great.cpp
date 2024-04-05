@@ -1,19 +1,46 @@
 class Solution {
 public:
     string makeGood(string s) {
-        string ans;
         
-        for(int i = 0 ; i < s.size() ; i++)
-        {
-            ans.push_back(s[i]);
+        stack<char>st;
+        
+        string ans="";
+        
+      
+        
+        for(int i=0;i<s.length();i++)
             
-            while(ans.size() && (ans.back()==s[i+1]+32 || ans.back()==s[i+1]-32))
+        {
+            
+            if(!st.empty() && (st.top()>='a'&& st.top()<='z'))
             {
-                ans.pop_back();
-                i++;
+                if(!st.empty() && (s[i]>='A' && s[i]<='Z') && abs(s[i]-st.top())==32)
+                {
+                    st.pop();
+                    continue;
+                }
             }
+            
+             else if (!st.empty() && (st.top()>='A' && st.top()<='Z'))
+            {
+                if(!st.empty() && (s[i]>='a' && s[i]<='z') && abs(s[i]-st.top())==32)
+                {
+                    st.pop();
+                    continue;
+                }
+            }
+            
+           st.push(s[i]);
+        }
+        
+        while(!st.empty())
+        {
+            ans=st.top()+ans;
+            st.pop();
         }
         
         return ans;
+        
+        
     }
 };
