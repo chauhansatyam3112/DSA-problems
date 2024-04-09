@@ -2,7 +2,7 @@ class Solution {
 public:
     int timeRequiredToBuy(vector<int>& tickets, int k) {
         
-        // code written by-satyam
+       
         
         // 2 3 2 k=2
         
