@@ -1,6 +1,7 @@
 class Solution {
 public:
     int trap(vector<int>& height) {
+        
      int n=height.size();
         
         int prefix[n];
@@ -26,6 +27,7 @@ public:
             water[i]=min(prefix[i],suffix[i]);
         }
         int ans=0;
+        
         for(int i=0;i<n;i++)
         {
             ans+=(water[i]-height[i]);
