@@ -11,17 +11,34 @@
  */
 class Solution {
 public:
-    int sumNumbers(TreeNode* root) {
-         stack<pair<TreeNode*, int>> s;      // {node, cur}
-        s.push({root, 0});
-        int sum = 0;
-        while(!s.empty()) {
-            auto [root, cur] = s.top(); s.pop();
-            cur = cur * 10 + root -> val;
-            if(!root -> left && !root -> right) sum += cur;  // reached leaf node
-            if(root -> right) s.push({root -> right, cur});
-            if(root -> left) s.push({root -> left, cur});
+    int ans=0;
+    
+    void solve(TreeNode*root,string str)
+    {
+        if(!root)return ;
+        
+        if(!root->left && !root->right)
+        {
+            str+=(to_string(root->val));
+            
+            ans+=(stoi(str));
+            
+            return;
+            
         }
-        return sum;
+        
+        str+=(to_string(root->val));
+        
+        solve(root->left,str);
+        
+        solve(root->right,str);
+    }
+    
+    int sumNumbers(TreeNode* root) {
+        
+        solve(root,"");
+        
+        return ans;
+        
     }
 };
