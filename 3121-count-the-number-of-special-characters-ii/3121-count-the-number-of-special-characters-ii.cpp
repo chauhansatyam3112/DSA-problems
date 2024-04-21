@@ -8,6 +8,7 @@ public:
      for(int i = 0; i < word.length(); i++) {
         
         mp.insert({word[i], {i, false}});
+         
      }
      
       vector<int> v(26, 0); 
@@ -34,7 +35,8 @@ public:
                 itr->second.second = true;
             }
             
-            else if(itr!=mp.end() && itr->second.first<it->second.first && itr->second.second)
+              else if(itr!=mp.end() && itr->second.first<it->second.first && itr->second.second)
+                  
             {
                 v[it->first-'a']=0;
             }
