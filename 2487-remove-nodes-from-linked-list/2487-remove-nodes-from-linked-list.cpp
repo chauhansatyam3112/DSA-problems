@@ -12,7 +12,8 @@ class Solution {
 public:
     ListNode* removeNodes(ListNode* head) {
          stack<ListNode*> st;
-        ListNode* node=head,*finalAns=head;
+            
+        ListNode* node=head,*ans=head;
         
         st.push(node);
         node = node->next;
@@ -24,7 +25,7 @@ public:
             }
             
             if(st.size() == 0){
-                finalAns = node;
+                ans = node;
             }
             else{
                 st.top()->next = node;
@@ -32,7 +33,7 @@ public:
             st.push(node);
             node=node->next;
         }
-        return finalAns;
+        return ans;
 
         
     }
