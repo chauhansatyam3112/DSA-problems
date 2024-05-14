@@ -1,40 +1,38 @@
 class Solution {
 public:
-    vector<vector<int>> directions{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
-
-    int dfs(int i, int j, vector<vector<int>>& grid, vector<vector<bool>>& visited) {
-        if (i < 0 || i >= grid.size() || j < 0 || j >= grid[0].size() || grid[i][j] == 0 || visited[i][j]) {
-            return 0;
+    int dfs(vector<vector<int>>& grid, int i , int j, vector<vector<int>>& vis)
+    {
+        int dr[4] = {-1,0,1,0};
+        int dc[4] = {0,1,0,-1};
+        int a = 0;
+        for(int k=0;k<4;k++){
+            int nr = dr[k] + i;
+            int nc = dc[k] + j;
+            if(nr>=0&&nr<grid.size() && nc>=0&&nc<grid[0].size() && grid[nr][nc] && !vis[nr][nc]){
+                vis[nr][nc] = 1;
+                int aa = grid[nr][nc] + dfs(grid, nr, nc, vis);
+                a = max(a,aa);
+                vis[nr][nc] = 0;
+            }
         }
-        
-        visited[i][j] = true;
-        int maxGold = 0;
-        
-        for (auto& dir : directions) {
-            int x = i + dir[0];
-            int y = j + dir[1];
-            maxGold = max(maxGold, grid[i][j] + dfs(x, y, grid, visited));
-        }
-        
-        visited[i][j] = false; // Backtrack
-        
-        return maxGold;
+        return a;
     }
-
 public:
     int getMaximumGold(vector<vector<int>>& grid) {
-        int n = grid.size(), m = grid[0].size();
-        vector<vector<bool>> visited(n, vector<bool>(m, false));
-        int maxGold = 0;
-        
-        for (int i = 0; i < n; ++i) {
-            for (int j = 0; j < m; ++j) {
-                if (grid[i][j] > 0) {
-                    maxGold = max(maxGold, dfs(i, j, grid, visited));
+        int n = grid.size();
+        int m = grid[0].size();
+        vector<vector<int>>vis(n,vector<int>(m));
+        int ans = 0;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(grid[i][j]){
+                    vis[i][j]=1;
+                    int aa = grid[i][j] + dfs(grid, i, j, vis);
+                    ans = max(aa,ans);
+                    vis[i][j]=0;
                 }
             }
         }
-        
-        return maxGold;
+        return ans;
     }
 };
