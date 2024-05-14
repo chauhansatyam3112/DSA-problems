@@ -1,13 +1,15 @@
 class Solution {
 public:
+      vector<vector<int>> directions{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+    
     int dfs(vector<vector<int>>& grid, int i , int j, vector<vector<int>>& vis)
     {
-        int dr[4] = {-1,0,1,0};
-        int dc[4] = {0,1,0,-1};
+        // int dr[4] = {-1,0,1,0};
+        // int dc[4] = {0,1,0,-1};
         int a = 0;
-        for(int k=0;k<4;k++){
-            int nr = dr[k] + i;
-            int nc = dc[k] + j;
+        for(auto &it:directions){
+            int nr = it[0] + i;
+            int nc = it[1] + j;
             if(nr>=0&&nr<grid.size() && nc>=0&&nc<grid[0].size() && grid[nr][nc] && !vis[nr][nc]){
                 vis[nr][nc] = 1;
                 int aa = grid[nr][nc] + dfs(grid, nr, nc, vis);
