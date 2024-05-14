@@ -1,40 +1,53 @@
 class Solution {
 public:
-      vector<vector<int>> directions{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
     
-    int dfs(vector<vector<int>>& grid, int i , int j, vector<vector<int>>& vis)
-    {
-        // int dr[4] = {-1,0,1,0};
-        // int dc[4] = {0,1,0,-1};
-        int a = 0;
-        for(auto &it:directions){
-            int nr = it[0] + i;
-            int nc = it[1] + j;
-            if(nr>=0&&nr<grid.size() && nc>=0&&nc<grid[0].size() && grid[nr][nc] && !vis[nr][nc]){
-                vis[nr][nc] = 1;
-                int aa = grid[nr][nc] + dfs(grid, nr, nc, vis);
-                a = max(a,aa);
-                vis[nr][nc] = 0;
+    vector<vector<int>>directions{{1,0},{-1,0},{0,1},{0,-1}};
+    
+ int solve(int i, int j, vector<vector<int>> &grid, int n, int m, vector<vector<bool>> &vis) {
+     
+        int maxi = 0;
+     
+        vis[i][j] = true;   
+    
+    for (auto &it : directions) {
+        
+            int x = it[0] + i;
+        
+            int y = it[1] + j;
+
+            if (x >= 0 && x < n && y >= 0 && y < m && grid[x][y] != 0 && !vis[x][y]) {
+                
+                int ans = grid[x][y] + solve(x, y, grid, n, m, vis);
+                
+                maxi = max(ans, maxi);
             }
         }
-        return a;
+
+        vis[i][j] = false; 
+    
+        return maxi;
     }
-public:
+    
     int getMaximumGold(vector<vector<int>>& grid) {
-        int n = grid.size();
-        int m = grid[0].size();
-        vector<vector<int>>vis(n,vector<int>(m));
-        int ans = 0;
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                if(grid[i][j]){
-                    vis[i][j]=1;
-                    int aa = grid[i][j] + dfs(grid, i, j, vis);
-                    ans = max(aa,ans);
-                    vis[i][j]=0;
+        
+        int n=grid.size(),m=grid[0].size();
+        
+        vector<vector<bool>>vis(n,vector<bool>(m,false));
+        
+        int maxi=0;
+        
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(grid[i][j]!=0)
+                {
+                    
+                    maxi=max(maxi,grid[i][j]+solve(i,j,grid, n,m,vis));
                 }
             }
         }
-        return ans;
+        
+       return maxi;
     }
 };
