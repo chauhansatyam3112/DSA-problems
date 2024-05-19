@@ -2,59 +2,32 @@ class Solution {
 public:
     vector<bool> isArraySpecial(vector<int>& nums, vector<vector<int>>& q) {
         
+         int n = nums.size();
         
-        vector<bool> res;
+        vector<int>idx;
         
-        vector<int> v; 
+        for(int i = 1; i < n; i++)
+            
+            if(nums[i] % 2 == nums[i-1] % 2)
+                
+                idx.push_back(i);
         
-      
-        int p = (nums[0] % 2) ? 1 : 0;
+        int size =idx.size();
         
-        for (int i = 1; i < nums.size(); ++i) {
+        vector<bool> ans(q.size(), true);
+        
+        if(size == 0) return ans;
+        
+        for(int i = 0; i < q.size(); i++) {
             
-            if (nums[i] % 2) {
-                
-                if (p == 0) {
-                    
-                    
-                    p = 1;
-                    
-                } else {
-                    
-                    v.push_back(i);
-                }
-            } else {
-                
-                if (p == 1) {
-                    
-                    p = 0;
-                } else {
-                    
-                    v.push_back(i);
-                }
-            }
-        }
-
-       
-        for (auto& it :q ) {
+            if(q[i][1] == q[i][0]) continue;
             
-            int st = it[0], ed = it[1];
+            int lower = lower_bound(idx.begin(), idx.end(), q[i][0] + 1) -idx.begin();
             
-            int lb = upper_bound(v.begin(), v.end(), st) - v.begin();
-            
-          
-            if (lb >= v.size() || v[lb] > ed) {
-                
-                res.push_back(true);
-                
-            } else {
-                
-                res.push_back(false);
-            }
+            if(lower < size && idx[lower] <= q[i][1])  ans[i] = false;
         }
         
-        return res;
+        return ans;
     
-          
-}
+    }
 };
