@@ -1,44 +1,62 @@
 class Solution {
 public:
     
-    bool isPalindrom(string s){
-    int l = 0;
-    int r = s.size() - 1;
-    while(l < r){
-        if(s[l++] != s[r--]){
-            return false;
-        }
-    }
-    return true;
-}
-    void solve(string s,vector<vector<string>>&ans,vector<string>temp)
+    bool isPalindrome(string &str)
     {
-        if(s.size()==0)
+        int i=0,j=str.length()-1;
+        bool flag=false;
+        
+        while(i<j)
         {
-            ans.push_back(temp);
-           // return ;
+            if(str[i]==str[j])
+            {
+                i++;j--;
+            }
+            else{
+                flag=true;
+                break;
+            }
             
         }
         
+        return flag==false;
+    }
+    void solve(string str,vector<string>&res,vector<vector<string>>&ans)
+    {
         
-        for(int i=0;i<s.size();i++)
+        if(str.length()<=0)
         {
-            string check=s.substr(0,i+1);
-            string remain=s.substr(i+1);
+            ans.push_back(res);
+            return;
+        }
+        
+        
+        
+        for(int i=0;i<str.length();i++)
+        {
             
-            if(isPalindrom( check)){
-                temp.push_back(check);
-            solve(remain,ans,temp);
+            string temp=str.substr(0,i+1);
+            string rem=str.substr(i+1);
             
-            temp.pop_back();
+            if(isPalindrome(temp))
+            {
+                res.push_back(temp);
+                
+                solve(rem,res,ans);
+                res.pop_back();
             }
+           
+            
         }
     }
-               
     vector<vector<string>> partition(string s) {
-        vector<vector<string>>ans;
+        
         vector<string>temp;
-        solve(s,ans,temp);
+        vector<vector<string>>ans;
+        
+        
+        solve(s,temp,ans);
         return ans;
+     
     }
 };
