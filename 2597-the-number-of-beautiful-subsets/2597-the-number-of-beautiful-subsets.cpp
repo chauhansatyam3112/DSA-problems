@@ -1,34 +1,31 @@
 class Solution {
 public:
-    int beautifulSubsets(vector<int>& nums, int k) {
-       // vector<vector<int>>
-          sort(nums.begin(), nums.end());
+    
+    int solve(int idx,vector<int>&nums,int k,unordered_map<int,int>&mp)
+    {
+        if(idx==nums.size())return 1;
         
-        int n = nums.size();
-        int result = 0;
+        int take=0;
         
-        vector<int> cant_take_with(n, 0);
-        for (int j = 0; j < n; j ++) {
-            for (int i = 0; i < n; i ++) {
-                if (abs(nums[i] - nums[j]) == k) cant_take_with[j] |= (1 << i);
-            }
-        }
-        
-        for (int sub = 1; sub < (1 << n); sub ++) {
-            bool is_bad_subset = false;
+        if(!mp[nums[idx] - k] && !mp[nums[idx] + k])
+        {
+            mp[nums[idx]]++;
             
-            for (int i = 0; i < n; i ++) {
-                if (((1 << i) & sub) == 0) continue;
-                
-                if (cant_take_with[i] & sub) {
-                    is_bad_subset = true;
-                }
-            }
-
-            if (!is_bad_subset) result ++;
+            take=solve(idx+1,nums,k,mp);
+            
+            mp[nums[idx]]--;
         }
         
-        return result;
+        int nottake=solve(idx+1,nums,k,mp);
         
+        return take+nottake;
+    }
+    int beautifulSubsets(vector<int>& nums, int k) {
+        
+        sort(nums.begin(),nums.end());
+        
+        unordered_map<int,int>mp;
+        
+        return solve(0,nums,k,mp)-1;
     }
 };
