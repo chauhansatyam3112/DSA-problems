@@ -6,10 +6,9 @@ public:
             return 0;
         }
 
-        // Option 1: Skip the current word
         int maxScore = solve(words, mp, score, idx + 1);
 
-        // Option 2: Include the current word if possible
+      
         string str = words[idx];
         unordered_map<char, int> tempMap = mp;
         bool canForm = true;
