@@ -3,6 +3,7 @@ public:
     int countDays(int days, vector<vector<int>>& nums) {
         
         sort(nums.begin(),nums.end());
+        
         vector<vector<int>>v;
         
         for(int i=0;i<nums.size();i++)
