@@ -28,5 +28,5 @@
 </ul>
 
 <p>&nbsp;</p>
-<p><strong>Note:</strong> This question is the same as 1296: <a href="https://leetcode.com/problems/divide-array-in-sets-of-k-consecutive-numbers/" target="_blank">https://leetcode.com/problems/divide-array-in-sets-of-k-consecutive-numbers/</a></p>
+<p><strong>Note:</strong> This question is the same as 1296: <a href="https://leetcode.com/problems/divide-array-in-sets-of-k-consecutive-numbers/" target="_blank" previewlistener="true">https://leetcode.com/problems/divide-array-in-sets-of-k-consecutive-numbers/</a></p>
 </div>
