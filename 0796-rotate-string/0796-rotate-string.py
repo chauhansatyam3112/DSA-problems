@@ -6,8 +6,10 @@ class Solution:
         
         res=s+s
         
-        if goal in res:
-            return True
+        idx=res.find(goal)
         
-        return False
-            
+        if idx==-1:
+            return False
+        
+        return True
+        
