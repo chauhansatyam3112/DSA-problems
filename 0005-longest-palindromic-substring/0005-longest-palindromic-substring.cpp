@@ -1,41 +1,58 @@
 class Solution {
 public:
-    string longestPalindrome(string s) {
-        
-        
-        
-  int len=s.length();
-        
-  vector<vector<int>>dp(len,vector<int>(len,0));
-        
-   
-    int end=1;
-    int start=0;
-	
-    for(int i=0;i<len;i++)
+    bool solve(int i,int j,string &s,vector<vector<int>>&dp)
     {
-        dp[i][i] = 1;
-    }
-    for(int i=0;i<len-1;i++)
-    {
-        if(s[i]==s[i+1])
-        { dp[i][i+1]=1;start=i;end=2;}
+        if(i>=j)
+        {
+            return 1;
+        }
+        
+        if(dp[i][j]!=-1)return dp[i][j];
+        
+        
+        if(s[i]==s[j])
+        {
+            bool x=solve(i+1,j-1,s,dp);
+            
+            dp[i][j]=x;
+        }
+        
+        
+         else{
+             return dp[i][j]=false;
+             
+         }   
+        
+        return dp[i][j];
+        
+        
+        
     }
     
-    for(int j=2;j<len;j++)
-    {
-        for(int i=0;i< len-j;i++)
-        {  
-            int left=i; 
-            int right = i+j;  
-            
-            if(dp[left+1][right-1]==1 && s[left]==s[right]) 
+    string longestPalindrome(string s) {
+        
+        vector<vector<int>>dp(1001,vector<int>(1001,-1));
+        
+        int maxi=0;
+        
+        int start=0;
+        
+        for(int i=0;i<s.length();i++)
+        {
+            for(int j=i;j<s.length();j++)
             {
-                dp[left][right]=1; start=i; end=j+1; 
-            }        
+                if(solve(i,j,s,dp))
+                {
+                    if(j-i+1>maxi)
+                    {
+                        maxi=j-i+1;
+                        start=i;
+                        
+                    }
+                }
+            }
         }
+        
+        return s.substr(start,maxi);
     }
-   return s.substr(start, end);
-}
-     
 };
