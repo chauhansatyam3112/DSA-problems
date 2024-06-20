@@ -1,20 +1,22 @@
 class Solution {
 public:
+    
     bool isPossible(int dist,vector<int>&stalls,int k)
 {
         int n=stalls.size();
-    int cntCows=1;
+    int cnt=1;
     int prev=stalls[0];
     
     for(int i=1;i<n;i++)
     {
         if(stalls[i]-prev>=dist)
         {
-            cntCows++;
+            cnt++;
             prev=stalls[i];
             
         }
-       if(cntCows>=k)return true;
+        
+       if(cnt>=k)return true;
     }
     return false;
 }
