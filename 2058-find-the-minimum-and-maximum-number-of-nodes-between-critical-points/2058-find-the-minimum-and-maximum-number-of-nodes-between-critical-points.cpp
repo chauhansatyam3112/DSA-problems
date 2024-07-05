@@ -39,16 +39,16 @@ public:
         return {-1, -1};
     }
 
-    int minDist = INT_MAX;
+    int mini = INT_MAX;
         
     for (int i = 1; i < v.size(); i++) {
         
-        minDist = min(minDist, v[i] - v[i - 1]);
+        mini = min(mini, v[i] - v[i - 1]);
     }
         
-    int maxDist = v.back() - v.front();
+    int maxi = v.back() - v.front();
 
-    return {minDist, maxDist};
+    return {mini, maxi};
 
         
     }
