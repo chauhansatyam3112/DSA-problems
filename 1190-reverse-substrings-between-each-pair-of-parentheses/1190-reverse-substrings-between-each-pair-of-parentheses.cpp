@@ -1,22 +1,52 @@
 class Solution {
 public:
     string reverseParentheses(string s) {
-        stack<int> st;
-        string res;
-        for (int i = 0; i < s.size(); i ++) {
-            if (s[i] == '(') {
-                st.push(i);    
-            } else if (s[i] == ')') {
-                int top = st.top();
+        
+        stack<char>st;
+        
+        for(int i=0;i<s.length();i++)
+        {
+           if(s[i]=='(' || (s[i]>='a' && s[i]<='z'))
+           {
+               st.push(s[i]);
+           }
+            
+            else{
+                
+                string temp="";
+                
+                
+                while(!st.empty() && st.top()!='(')
+                {
+                    
+                    temp+=st.top();
+                    st.pop();
+                    
+  
+                }
+                
                 st.pop();
-                reverse(s.begin() + top + 1, s.begin() + i);
+                
+                for(int i=0;i<temp.length();i++)
+                {
+                    st.push(temp[i]);
+                }
+                
+                temp.clear();
+                
             }
         }
-        for (auto it: s) {
-            if (it != '(' && it != ')') {
-                res.push_back(it);
-            }
+        
+        string ans="";
+        
+        while(!st.empty())
+        {
+            ans+=st.top();st.pop();
         }
-        return res;
+        reverse(ans.begin(),ans.end());
+        
+        return ans;
     }
+    
+    
 };
