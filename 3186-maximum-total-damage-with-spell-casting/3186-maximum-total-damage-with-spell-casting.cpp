@@ -1,38 +1,51 @@
 class Solution {
 public:
   
-#define ll long long
- ll getMaxDamage(vector<ll>& dp, map<int, int>& frequencyMap, vector<int>& uniquePowers, int index) {
-        if (index == uniquePowers.size()) return 0;
+#define ll long 
+    
+ ll solve(vector<ll>& dp, map<int, int>&mp, vector<int>&v, int index) {
+     
+        if (index == v.size()) return 0;
+     
         if (dp[index] != -1) return dp[index];
-        // Option 1: Skip the current element
-        ll skip = getMaxDamage(dp, frequencyMap, uniquePowers, index + 1);
-        // Option 2: Take the current element
+     
+        
+        ll skip = solve(dp,mp, v, index + 1);
+     
+        
         ll take = 0;
+     
+     
         int nextIndex = index + 1;
-        while (nextIndex < uniquePowers.size() && uniquePowers[nextIndex] - uniquePowers[index] <= 2) {
+     
+        while (nextIndex < v.size() && v[nextIndex] - v[index] <= 2) {
             nextIndex++;
         }
-        take = ((1ll)*frequencyMap[uniquePowers[index]] * uniquePowers[index]) + getMaxDamage(dp, frequencyMap, uniquePowers, nextIndex);
+     
+        take = ((1ll)*mp[v[index]] *v[index]) +solve(dp, mp,v, nextIndex);
+     
         return dp[index] = max(take, skip);
     }
 
 
 
 long long maximumTotalDamage(vector<int>& power) {
-      map<int, int> frequencyMap;
-        vector<int> uniquePowers;
-        // Create frequency map and unique powers list
+    
+      map<int, int>mp;
+    
+        vector<int>v;
+        
         for (auto p : power) {
-            frequencyMap[p]++;
+            mp[p]++;
         }
-        for (auto it : frequencyMap) {
-            uniquePowers.push_back(it.first);
+        for (auto it :mp) {
+            
+            v.push_back(it.first);
         }
-        // Initialize DP array with -1
-        vector<ll> dp(frequencyMap.size(), -1);
-        // Start the recursive function
-        return getMaxDamage(dp, frequencyMap, uniquePowers, 0);
+        
+        vector<ll> dp(v.size(), -1);
+      
+        return solve(dp, mp,v, 0);
 }
 
 };
