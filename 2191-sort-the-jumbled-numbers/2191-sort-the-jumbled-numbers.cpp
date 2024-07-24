@@ -30,7 +30,7 @@ public:
      string str="";
        
        if (p == 0) {
-            str += (mp[0] + '0'); // Handle the case where p is 0
+            str += (mp[0] + '0'); 
         } else {
        
        while(p>0)
