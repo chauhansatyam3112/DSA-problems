@@ -1,61 +1,33 @@
 class Solution {
 public:
-    vector<int> sortArray(vector<int>& arr) {
-        //Bubble Sort
-        int n=arr.size();
+    vector<int> sortArray(vector<int>& nums) {
+        unordered_map<int,int>mp;
         
-//         for(int i=0;i<n-1;i++)
-//         {
-            
-//             bool swapped=true;
-//             for(int j=0;j<n-i-1;j++)
-//             {
-//                 if(arr[j]>arr[j+1]){
-//                     swap(arr[j],arr[j+1]);
-//                 swapped=false;}
+        for(int i=0;i<nums.size();i++)
+        {
+            mp[nums[i]]++;
+        }
+        
+        int i=0;
+        int maxi=*max_element(nums.begin(),nums.end());
+        int mini=*min_element(nums.begin(),nums.end());
+        
+        
+        int j=0;
+        
+        for(int i=mini;i<=maxi;i++)
+        {
+            while(mp[i]>0)
+            {
+                nums[j++]=i;
                 
-//             }
-//             if(swapped==true)
-//                     break;
-            
-//          }
-//         return arr;
-        
-        
-        //selection sort
-        
-//         for(int i=0;i<n-1;i++)
-//         {
-//             int minIdx=i;
-//             for(int j=i+1;j<n;j++)
-//             {
-//                 if(arr[j]<arr[minIdx])
-//                     minIdx=j;
-               
+                mp[i]--;
+              
                 
-//             }
-//              swap(arr[minIdx],arr[i]);
-//         }
-//         return arr;
-        //Insertion sort
-        
-//         for(int i=1;i<n;i++)
-//         {
-//             int temp=arr[i];
-//             int j=i-1;
-//             for(;j>=0;j--)
-//             {
-//                 if(arr[j]>temp)
-//                     arr[j+1]=arr[j];
                 
-//                 else
-//                     break;
-//             }
-//             arr[j+1]=temp;
-//         }
-//         return arr;
-        sort(arr.begin(),arr.end());
-        return arr;
+            }
+        }
         
+        return nums;
     }
 };
