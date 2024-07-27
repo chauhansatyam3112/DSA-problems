@@ -1,84 +1,67 @@
 class Solution {
 public:
-   unordered_map<string, long long> mp1;
     
-    unordered_map<char, vector<pair<char, long long>>> mp2;
-
-    void dijkstra(char source) {
+    void flyodwarshall(vector<char>&original,vector<char>&changed,vector<int>&cost,vector<vector<long long>>&costmat)
         
-        priority_queue<pair<long long, char>, vector<pair<long long, char>>, greater<pair<long long, char>>> pq;
+    {
         
-        pq.push({0, source});
-
-        vector<long long> dis(26, LLONG_MAX);
-
-        while (!pq.empty()) {
+        for(int i=0;i<original.size();i++)
+        {
+            int x1=original[i]-'a';
+            int x2=changed[i]-'a';
             
-            auto top = pq.top();
-            pq.pop();
-
-            auto distance = top.first;
-            
-            auto node = top.second;
-
-            if (dis[node - 'a'] <= distance) continue;
-
-            dis[node - 'a'] = distance;
-
-            mp1[solve(source, node)] = distance;
-
-            for (pair<char, long long> child : mp2[node]) {
-                
-                if (dis[child.first - 'a'] == LLONG_MAX) {
-                    
-                    pq.push({distance + child.second, child.first});
+           costmat[x1][x2]=min(1LL*costmat[x1][x2],(long long)cost[i]);
+        }
+        
+        for(int k=0;k<26;k++)
+        {
+            for(int i=0;i<26;i++ )
+            {
+                for(int j=0;j<26;j++)
+                {
+                    costmat[i][j]=min(costmat[i][j],costmat[i][k]+costmat[k][j]);
                 }
             }
         }
+        
     }
-
-    string solve(char a, char b) {
-        
-        string ans = "";
-        
-        ans.push_back(a);
-        
-        ans.push_back(',');
-        
-        ans.push_back(b);
-        
-        return ans;
-    }
-
+    
+    
+    
     long long minimumCost(string source, string target, vector<char>& original, vector<char>& changed, vector<int>& cost) {
-        string str = "";
-
-        for (int i = 0; i < original.size(); i++) {
-            
-            str = solve(original[i], changed[i]);
-            
-            mp2[original[i]].push_back({changed[i], cost[i]});
-            
-            mp1[str] = cost[i];
-        }
-
-        for (int i = 'a'; i <= 'z'; i++) {
-            
-            dijkstra(i);
-        }
-
-        long long ans = 0;
-
-        for (int i = 0; i < source.size(); i++) {
-            
-            string str = solve(source[i], target[i]);
-
+        
+        
+        vector<vector<long long >>costmat(26,vector<long long>(26,INT_MAX));
+        
+        flyodwarshall(original,changed,cost,costmat);
+        
+        long long ans=0;
+        
+        for(int i=0;i<source.length();i++)
+        {
            
-            if (mp1.find(str) == mp1.end()) return -1;
-
-            ans += (mp1[str]);
+                if(source[i]==target[i])
+                {
+                    continue;
+                }
+            
+              if(costmat[source[i]-'a'][target[i]-'a']==INT_MAX)
+              {
+                  return -1;
+              }
+            
+            ans+=(costmat[source[i]-'a'][target[i]-'a']);
+            
         }
-
+        
+        
         return ans;
+        
+        
+        
+        
+        
+        
+        
     }
 };
