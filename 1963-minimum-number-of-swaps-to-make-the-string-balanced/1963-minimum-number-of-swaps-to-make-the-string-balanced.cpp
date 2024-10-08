@@ -2,30 +2,20 @@ class Solution {
 public:
     int minSwaps(string s) {
         
-        int cnt=0,swaps=0;
+        int cnt=0;
         
-        int j=s.length()-1;
-        
-        for(int i=0;i<s.length();i++)
+        for(int i=0;i<s.size();i++)
         {
-            if(s[i]=='[')cnt++;
-            
-            else{
-                cnt--;
-            }
-            
-            if(cnt<0)
+            if(s[i]=='[')
             {
-                while(i<j && s[j]!='[')j--;
-                
-                swap(s[i],s[j]);
-                
-                swaps++;
-                
-                cnt=1;
+                cnt++;
+            }
+            else if(cnt>0){
+                cnt--;
+               
             }
         }
         
-        return swaps;
+        return (cnt+1)/2;
     }
 };
