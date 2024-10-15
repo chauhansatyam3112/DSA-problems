@@ -6,8 +6,7 @@ public:
         
     long long cnt = 0,ans=0;
         
-      
-
+      //100101110->100
     for (int i = 0; i < s.length(); i++) {
        
         
@@ -17,9 +16,12 @@ public:
             cnt++;
         }
             else{
-ans+=cnt;}
+                
+            ans+=cnt;
+            
+            }
           
-        
+        //10010001
             
     }
 
