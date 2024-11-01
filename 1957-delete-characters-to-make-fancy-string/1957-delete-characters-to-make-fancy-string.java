@@ -1,51 +1,34 @@
 class Solution {
-public:
-    string makeFancyString(string s) {
+    public String makeFancyString(String s) {
         
-        int cnt=0;string ans="";
         
-        // "abbcccddddeeeee"
+        char prev=s.charAt(0);
         
-//         abb
+        int cnt=1;
         
-        stack<char>st;
+        StringBuilder res=new StringBuilder();
         
-        for(int i=0;i<s.length();i++)
+        res.append(s.charAt(0));
+        
+        for(int i=1;i<s.length();i++)
         {
-            
-            if(st.empty() || st.top()!=s[i])
+            if(s.charAt(i)==prev)
             {
-                st.push(s[i]);
+                cnt++;
+            }
+            else{
+                
                 cnt=1;
+                prev=s.charAt(i);
             }
-            else if(st.top()==s[i])
+            
+            if(cnt<3)
             {
-                cnt++; st.push(s[i]);
+                res.append(s.charAt(i));
             }
-            
-            if(cnt>=3)
-            {
-                while(!st.empty() && cnt>=3)
-                {
-                    st.pop();
-                    cnt--;
-                }
-            }
-            
-            
-           
-            
         }
         
-        while(!st.empty())
-        {
-            ans+=st.top();st.pop();
-        }
-        reverse(ans.begin(),ans.end());
-        
-        return ans;
-        
-    
+        return res.toString();
         
     }
-};
+}
