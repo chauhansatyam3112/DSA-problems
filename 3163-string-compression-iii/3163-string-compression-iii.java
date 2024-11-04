@@ -8,18 +8,20 @@ class Solution {
         int cnt=0;
         
         String res="";
+        
+        char ch[]=word.toCharArray();
          
         while(i<n)
         {
              cnt=0;
-            char ch=word.charAt(i);
+            char chr=ch[i];
             
-            while(i<n && cnt<9 && ch==word.charAt(i) )
+            while(i<n && cnt<9 && chr==ch[i] )
             {
                 cnt++;i++;
             }
             
-            res+=String.valueOf(cnt)+String.valueOf(ch);
+            res+=String.valueOf(cnt)+String.valueOf(chr);
             
         }
         return res;
